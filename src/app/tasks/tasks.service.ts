@@ -12,4 +12,8 @@ export class TasksService {
   getTasksByUserId(userId: UserType['id']): ITask[] {
     return this.tasks.filter((t) => t.userId == userId);
   }
+
+  completeTaskById(taskId: ITask['id']): void {
+    this.tasks = this.tasks.filter((t) => t.id !== taskId);
+  }
 }

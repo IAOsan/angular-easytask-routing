@@ -8,15 +8,13 @@ import { TaskComponent } from '../../tasks/task/task.component';
 @Component({
   selector: 'app-user/tasks',
   templateUrl: './userTasks.component.html',
-  imports: [TaskComponent]
+  imports: [TaskComponent],
 })
 export class UserTasksComponent implements OnChanges {
   @Input() userId: UserType['id'] = '';
   tasks: ITask[] = [];
 
-  constructor(
-    private tasksService: TasksService
-  ) {}
+  constructor(private tasksService: TasksService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['userId'] && this.userId) {
@@ -26,5 +24,10 @@ export class UserTasksComponent implements OnChanges {
 
   loadTasks(userId: ITask['id']): void {
     this.tasks = this.tasksService.getTasksByUserId(userId);
+  }
+
+  handleTaskCompletion(taskId: ITask['id']): void {
+    this.tasksService.completeTaskById(taskId);
+    this.loadTasks(this.userId);
   }
 }
