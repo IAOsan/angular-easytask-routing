@@ -1,1 +1,578 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --c-primary-50: #ede7f6;
+  --c-primary-100: #d1c4e9;
+  --c-primary-200: #b39ddb;
+  --c-primary-300: #9575cd;
+  --c-primary-400: #7e57c2;
+  --c-primary-500: #6f42c1;
+  --c-primary-600: #5e35b1;
+  --c-primary-700: #512da8;
+  --c-primary-800: #4527a0;
+  --c-primary-900: #311b92;
+
+  --c-secondary-50: #d4effa;
+  --c-secondary-100: #c7e9f9;
+  --c-secondary-200: #a9dbf4;
+  --c-secondary-300: #8accee;
+  --c-secondary-400: #6bbbe7;
+  --c-secondary-500: #3795bd;
+  --c-secondary-600: #2d7aa1;
+  --c-secondary-700: #235f80;
+  --c-secondary-800: #183f57;
+  --c-secondary-900: #0a1f2f;
+
+  --c-info-50: #f1fbff;
+  --c-info-100: #e3f7ff;
+  --c-info-200: #c2eaff;
+  --c-info-300: #9edcff;
+  --c-info-400: #78cbf9;
+  --c-info-500: #3ca9e2;
+  --c-info-600: #1d91d6;
+  --c-info-700: #1a74b3;
+  --c-info-800: #15578a;
+  --c-info-900: #0d3657;
+
+  --c-success-100: #d4edda;
+  --c-success-300: #77dd8e;
+  --c-success-500: #28a745;
+  --c-success-700: #1c7730;
+  --c-success-900: #0e3b18;
+
+  --c-warning-50: #fff8e1;
+  --c-warning-100: #ffecb3;
+  --c-warning-200: #ffe082;
+  --c-warning-300: #ffd54f;
+  --c-warning-400: #ffca28;
+  --c-warning-500: #ffc107;
+  --c-warning-600: #ffb300;
+  --c-warning-700: #ffa000;
+  --c-warning-800: #ff8f00;
+  --c-warning-900: #ff6f00;
+
+  --c-danger-100: #f8d7da;
+  --c-danger-300: #eb8f97;
+  --c-danger-500: #dc3545;
+  --c-danger-700: #9f2633;
+  --c-danger-900: #5e171e;
+
+  --c-light-100: #ffffff;
+  --c-light-500: #f5f5f5;
+
+  --c-dark-500: #252525;
+  --c-dark-900: #1a1a1a;
+
+  --text-on-primary: var(--c-light-100);
+  --text-on-secondary: var(--c-light-100);
+  --text-on-info: var(--c-dark-900);
+  --text-on-warning: var(--c-dark-900);
+  --text-on-danger: var(--c-light-100);
+  --text-on-success: var(--c-light-100);
+  --text-on-light: var(--c-dark-500);
+  --text-on-dark: var(--c-light-500);
+  --space-1: 0.25em;
+  --space-2: 0.5em;
+  --space-3: 0.75em;
+  --space-4: 1em;
+  --space-5: 1.5em;
+  --space-6: 2em;
+  --shadow-1: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  --shadow-2: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  --shadow-3: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  --glow: 0.25rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+  background-color: var(--c-light-500);
+  color: var(--c-dark-500);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+input,
+button,
+textarea {
+  font: inherit;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.heading-1 {
+  font-size: 3.815rem;
+}
+.heading-2 {
+  font-size: 3.052rem;
+}
+.heading-3 {
+  font-size: 2.441rem;
+}
+.heading-4 {
+  font-size: 1.953rem;
+}
+.heading-5 {
+  font-size: 1.563rem;
+}
+.heading-6 {
+  font-size: 1.25rem;
+}
+
+.container {
+  width: 56.25rem;
+  max-width: 68.75rem;
+  margin: 0 auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+.logo {
+  display: block;
+  border-radius: 50%;
+  height: 5rem;
+  width: 5rem;
+  background-color: var(--c-primary-700);
+}
+
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.button {
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--space-1);
+  font-weight: bold;
+}
+.button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+.button--primary {
+  background-color: var(--c-primary-500);
+  color: var(--text-on-primary);
+}
+.button--primary:focus {
+  outline: var(--glow) solid var(--c-primary-300);
+}
+.button--primary:hover:not(:disabled) {
+  background-color: var(--c-primary-400);
+}
+.button--primary:active {
+  background-color: var(--c-primary-600);
+}
+.button--secondary {
+  background-color: var(--c-secondary-500);
+  color: var(--text-on-secondary);
+}
+.button--secondary:focus {
+  outline: var(--glow) solid var(--c-secondary-300);
+}
+.button--secondary:hover:not(:disabled) {
+  background-color: var(--c-secondary-400);
+}
+.button--secondary:active {
+  background-color: var(--c-secondary-600);
+}
+.button--info {
+  background-color: var(--c-info-500);
+  color: var(--text-on-info);
+}
+.button--info:focus {
+  outline: var(--glow) solid var(--c-info-300);
+}
+.button--info:hover:not(:disabled) {
+  background-color: var(--c-info-400);
+}
+.button--info:active {
+  background-color: var(--c-info-600);
+}
+.button--warning {
+  background-color: var(--c-warning-500);
+  color: var(--text-on-warning);
+}
+.button--warning:focus {
+  outline: var(--glow) solid var(--c-warning-300);
+}
+.button--warning:hover:not(:disabled) {
+  background-color: var(--c-warning-400);
+}
+.button--warning:active {
+  background-color: var(--c-warning-600);
+}
+
+.form-control {
+  display: block;
+  background-color: var(--c-light-100);
+  width: 100%;
+  border-radius: var(--space-1);
+  border: 0.1rem solid lightgray;
+  outline: none;
+  padding: var(--space-2) var(--space-4);
+}
+.form-control:focus {
+  outline: var(--glow) solid var(--c-primary-100);
+}
+.form-control--textarea {
+  resize: vertical;
+  min-height: 240px;
+}
+.form__feedback {
+  display: block;
+  font-size: small;
+  margin-top: var(--space-2);
+}
+.form__feedback--invalid {
+  color: var(--c-danger-500);
+}
+
+.align-items-center {
+  align-items: center;
+}
+.align-self-center {
+  align-self: center;
+}
+.justify-content-sb {
+  justify-content: space-between;
+}
+.justify-content-end {
+  justify-content: end;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.d-flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-grow-1 {
+  flex-grow: 1;
+}
+.d-inline-flex {
+  display: inline-flex;
+}
+.gap {
+  gap: var(--space-5);
+}
+.gap-sm {
+  gap: var(--space-4);
+}
+.gap-lg {
+  gap: var(--space-6);
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.mt-1 {
+  margin-top: var(--space-1);
+}
+.mt-2 {
+  margin-top: var(--space-2);
+}
+.mt-3 {
+  margin-top: var(--space-3);
+}
+.mt-4 {
+  margin-top: var(--space-4);
+}
+.mt-5 {
+  margin-top: var(--space-5);
+}
+.mt-6 {
+  margin-top: var(--space-6);
+}
+.mr-1 {
+  margin-right: var(--space-1);
+}
+.mr-2 {
+  margin-right: var(--space-2);
+}
+.mr-3 {
+  margin-right: var(--space-3);
+}
+.mr-4 {
+  margin-right: var(--space-4);
+}
+.mr-5 {
+  margin-right: var(--space-5);
+}
+.mr-6 {
+  margin-right: var(--space-6);
+}
+.mb-1 {
+  margin-bottom: var(--space-1);
+}
+.mb-2 {
+  margin-bottom: var(--space-2);
+}
+.mb-3 {
+  margin-bottom: var(--space-3);
+}
+.mb-4 {
+  margin-bottom: var(--space-4);
+}
+.mb-5 {
+  margin-bottom: var(--space-5);
+}
+.mb-6 {
+  margin-bottom: var(--space-6);
+}
+.ml-1 {
+  margin-left: var(--space-1);
+}
+.ml-2 {
+  margin-left: var(--space-2);
+}
+.ml-3 {
+  margin-left: var(--space-3);
+}
+.ml-4 {
+  margin-left: var(--space-4);
+}
+.ml-5 {
+  margin-left: var(--space-5);
+}
+.ml-6 {
+  margin-left: var(--space-6);
+}
+
+.pt-1 {
+  padding-top: var(--space-1);
+}
+.pt-2 {
+  padding-top: var(--space-2);
+}
+.pt-3 {
+  padding-top: var(--space-3);
+}
+.pt-4 {
+  padding-top: var(--space-4);
+}
+.pt-5 {
+  padding-top: var(--space-5);
+}
+.pt-6 {
+  padding-top: var(--space-6);
+}
+.pr-1 {
+  padding-right: var(--space-1);
+}
+.pr-2 {
+  padding-right: var(--space-2);
+}
+.pr-3 {
+  padding-right: var(--space-3);
+}
+.pr-4 {
+  padding-right: var(--space-4);
+}
+.pr-5 {
+  padding-right: var(--space-5);
+}
+.pr-6 {
+  padding-right: var(--space-6);
+}
+.pb-1 {
+  padding-bottom: var(--space-1);
+}
+.pb-2 {
+  padding-bottom: var(--space-2);
+}
+.pb-3 {
+  padding-bottom: var(--space-3);
+}
+.pb-4 {
+  padding-bottom: var(--space-4);
+}
+.pb-5 {
+  padding-bottom: var(--space-5);
+}
+.pb-6 {
+  padding-bottom: var(--space-6);
+}
+.pl-1 {
+  padding-left: var(--space-1);
+}
+.pl-2 {
+  padding-left: var(--space-2);
+}
+.pl-3 {
+  padding-left: var(--space-3);
+}
+.pl-4 {
+  padding-left: var(--space-4);
+}
+.pl-5 {
+  padding-left: var(--space-5);
+}
+.pl-6 {
+  padding-left: var(--space-6);
+}
+
+.rounded-circle {
+  border-radius: 50%;
+}
+.rounded-1 {
+  border-radius: var(--space-1);
+}
+.rounded-2 {
+  border-radius: var(--space-2);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.shadow-1 {
+  box-shadow: var(--shadow-1);
+}
+.shadow-2 {
+  box-shadow: var(--shadow-2);
+}
+.shadow-3 {
+  box-shadow: var(--shadow-3);
+}
+
+.bg-primary {
+  background-color: var(--c-primary-500);
+}
+.bg-primary-700 {
+  background-color: var(--c-primary-700);
+}
+.bg-secondary {
+  background-color: var(--c-secondary-500);
+}
+.bg-info {
+  background-color: var(--c-info-500);
+}
+.bg-warning {
+  background-color: var(--c-warning-500);
+}
+.bg-danger {
+  background-color: var(--c-danger-500);
+}
+.bg-success {
+  background-color: var(--c-success-500);
+}
+.bg-light {
+  background-color: var(--c-light-500);
+}
+.bg-dark {
+  background-color: var(--c-dark-500);
+}
+
+.text-primary {
+  color: var(--c-primary-500);
+}
+.text-secondary {
+  color: var(--c-secondary-500);
+}
+.text-info {
+  color: var(--c-info-500);
+}
+.text-warning {
+  color: var(--c-warning-500);
+}
+.text-danger {
+  color: var(--c-danger-500);
+}
+.text-success {
+  color: var(--c-success-500);
+}
+.text-light {
+  color: var(--c-light-500);
+}
+.text-dark {
+  color: var(--c-dark-500);
+}
+
+.text-on-primary {
+  color: var(--text-on-primary);
+}
+.text-on-secondary {
+  color: var(--text-on-secondary);
+}
+.text-on-info {
+  color: var(--text-on-info);
+}
+.text-on-warning {
+  color: var(--text-on-warning);
+}
+.text-on-danger {
+  color: var(--text-on-danger);
+}
+.text-on-success {
+  color: var(--text-on-success);
+}
+.text-on-light {
+  color: var(--text-on-light);
+}
+.text-on-dark {
+  color: var(--text-on-dark);
+}
+
+.opacity-70 {
+  opacity: 70%;
+}
+
+.h-100 {
+  height: 100%;
+}
+.w-100 {
+  width: 100%;
+}

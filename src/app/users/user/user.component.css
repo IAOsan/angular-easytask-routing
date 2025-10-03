@@ -1,0 +1,23 @@
+.avatar {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.wrapper {
+  background-color: var(--c-primary-700);
+  color: var(--text-on-primary);
+  min-width: 17rem;
+}
+.wrapper:hover {
+  background-color: var(--c-primary-500);
+}
+.wrapper:focus {
+  outline: var(--glow) solid var(--c-primary-300);
+  background-color: var(--c-primary-500);
+}
+.wrapper:active {
+  background-color: var(--c-primary-700);
+}
+.wrapper.active {
+  background-color: var(--c-primary-500);
+}
