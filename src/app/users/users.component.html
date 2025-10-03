@@ -1,0 +1,7 @@
+<ul class="d-flex flex-column gap-sm">
+  @for (user of users; track user.id) {
+  <li>
+    <app-user [id]="user.id" [name]="user.name" [avatar]="user.avatar" />
+  </li>
+  }
+</ul>
