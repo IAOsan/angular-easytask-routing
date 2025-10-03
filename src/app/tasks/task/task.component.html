@@ -1,11 +1,15 @@
 <article class="bg-primary pl-4 pt-5 pr-4 pb-5 rounded-2 shadow-1">
   <h3 class="heading-6">{{ title }}</h3>
-  <p class="mb-5 opacity-70">{{ dueDate | date: 'fullDate'}}</p>
+  <p class="mb-5 opacity-70">{{ dueDate | date : "fullDate" }}</p>
   <p class="mb-5">
     {{ summary }}
   </p>
   <div class="d-flex justify-content-end">
-    <button type="button" class="button button--secondary shadow-2">
+    <button
+      (click)="onCompleteTask(id)"
+      type="button"
+      class="button button--secondary shadow-2"
+    >
       Complete
     </button>
   </div>

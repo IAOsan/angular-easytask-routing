@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ITask } from '../task.model';
 
 @Component({
@@ -12,4 +12,10 @@ export class TaskComponent {
   @Input({ required: true }) title!: ITask['title'];
   @Input({ required: true }) summary!: ITask['summary'];
   @Input({ required: true }) dueDate!: ITask['dueDate'];
+  @Input({ required: true }) onCompleteTask!: (taskId: ITask['id']) => void;
+  @Output() taskCompleted = new EventEmitter<ITask['id']>();
+
+  emitTaskCompleted(): void {
+    this.taskCompleted.emit(this.id);
+  }
 }
