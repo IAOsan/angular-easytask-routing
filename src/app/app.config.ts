@@ -19,7 +19,9 @@ const routes: Routes = [
   {
     path: 'users/:userId',
     component: TasksComponent,
-    children: [{ path: 'tasks', component: UserTasksComponent },
+    children: [{ path: 'tasks', component: UserTasksComponent, data: {
+      message: 'initial data'
+    } },
       {path: 'new-task', component: NewTaskComponent}
     ],
   },

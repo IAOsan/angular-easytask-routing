@@ -2,7 +2,12 @@
   <h2 class="heading-5">User's Tasks</h2>
   <a routerLink="new-task" class="button button--info shadow-2">Add task</a>
 </header>
-<button class="button button--warning mb-4 shadow-2">
-  Sort in ascending order
-</button>
+<a
+  routerLink="tasks"
+  [queryParams]="{ sort: sort === 'asc' ? 'desc' : 'asc' }"
+  queryParamsHandling="merge"
+  class="button button--warning mb-4 shadow-2"
+>
+  Sort in {{sort === 'asc' ? 'descending' : 'ascending'}} order
+</a>
 <router-outlet />
