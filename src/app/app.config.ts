@@ -9,20 +9,26 @@ import {
   withComponentInputBinding,
   withRouterConfig,
 } from '@angular/router';
+import { NewTaskComponent } from './tasks/newTask/newTask.component';
 import { NoTaskComponent } from './tasks/noTask/noTask.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { userNameResolveFn } from './tasks/userName.resolver';
 import { UserTasksComponent } from './users/user-tasks/userTasks.component';
-import { NewTaskComponent } from './tasks/newTask/newTask.component';
 
 const routes: Routes = [
   { path: '', component: NoTaskComponent },
   {
     path: 'users/:userId',
     component: TasksComponent,
-    children: [{ path: 'tasks', component: UserTasksComponent, data: {
-      message: 'initial data'
-    } },
-      {path: 'new-task', component: NewTaskComponent}
+    resolve: {
+      userName: userNameResolveFn,
+    },
+    children: [
+      {
+        path: 'tasks',
+        component: UserTasksComponent,
+      },
+      { path: 'new-task', component: NewTaskComponent },
     ],
   },
 ];
