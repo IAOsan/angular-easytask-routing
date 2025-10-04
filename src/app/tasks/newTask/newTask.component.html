@@ -1,0 +1,71 @@
+<div
+  class="wrapper d-flex flex-column aling-items-center justify-content-center"
+>
+  <div class="backdrop"></div>
+  <form
+    #newTaskForm="ngForm"
+    (ngSubmit)="handleSubmit(newTaskForm)"
+    class="form bg-light pt-5 pb-5 pl-5 pr-5 align-self-center rounded-2 shadow-3 text-on-light"
+  >
+    <h3 class="heading-6 mb-5">Add a task</h3>
+    <div class="mb-4">
+      <label for="titleInput"><b>Title</b></label>
+      <input
+        class="form-control"
+        type="text"
+        name="title"
+        id="titleInput"
+        ngModel
+        required
+        minlength="10"
+        #title="ngModel"
+      />
+      @if (title.dirty && title.errors?.['minlength']) {
+      <p class="form__feedback form__feedback--invalid">Title must contain at least 10 characters</p>
+      }
+    </div>
+    <div class="mb-4">
+      <label for="summaryInput"><b>Summary</b></label>
+      <textarea
+        class="form-control form-control--textarea"
+        name="summary"
+        id="summaryInput"
+        ngModel
+        required
+        minlength="10"
+        #summary="ngModel"
+      ></textarea>
+      @if (summary.dirty && summary.errors?.['minlength']) {
+      <p class="form__feedback form__feedback--invalid">Summary must contain at least 10 characters</p>
+      }
+    </div>
+    <div class="mb-5">
+      <label for="dateInput"><b>Due Date</b></label>
+      <input
+        class="form-control"
+        type="date"
+        name="dueDate"
+        id="dateInput"
+        [min]="today"
+        ngModel
+        required
+      />
+    </div>
+    <div class="d-flex gap-sm">
+      <button
+        class="button button--primary w-100"
+        type="submit"
+        [disabled]="newTaskForm.invalid"
+      >
+        Create
+      </button>
+      <a
+        routerLink="../tasks"
+        class="button button--secondary w-100 text-center"
+        type="button"
+      >
+        Cancel
+      </a>
+    </div>
+  </form>
+</div>

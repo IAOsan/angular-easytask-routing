@@ -16,4 +16,14 @@ export class TasksService {
   completeTaskById(taskId: ITask['id']): void {
     this.tasks = this.tasks.filter((t) => t.id !== taskId);
   }
+
+  addNewTask(task: Omit<ITask, 'id' | 'complete'>): void {
+    const newTask: ITask = {
+      ...task,
+      id: new Date().getTime().toString(16),
+      complete: false,
+    };
+
+    this.tasks = [...this.tasks, newTask];
+  }
 }
