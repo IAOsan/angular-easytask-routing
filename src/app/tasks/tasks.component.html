@@ -1,5 +1,5 @@
 <header class="d-flex justify-content-sb mb-6">
-  <h2 class="heading-5">{{userName}}'s Tasks</h2>
+  <h2 class="heading-5">{{ userName }}'s Tasks</h2>
   <a routerLink="new-task" class="button button--info shadow-2">Add task</a>
 </header>
 <a
@@ -8,6 +8,6 @@
   queryParamsHandling="merge"
   class="button button--warning mb-4 shadow-2"
 >
-  Sort in {{sort === 'asc' ? 'descending' : 'ascending'}} order
+  Sort in {{ sort === "asc" ? "descending" : "ascending" }} order
 </a>
 <router-outlet />
