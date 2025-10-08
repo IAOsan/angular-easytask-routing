@@ -11,26 +11,15 @@ import { SortDirectionType } from '../../shared/shared.types';
   templateUrl: './userTasks.component.html',
   imports: [TaskComponent],
 })
-export class UserTasksComponent implements OnChanges {
+export class UserTasksComponent {
   @Input() userId: UserType['id'] = '';
   @Input() sort: SortDirectionType = 'asc';
   @Input() tasks: ITask[] = [];
 
   constructor(private tasksService: TasksService) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    const isSortChanged = changes['sort']?.currentValue && this.sort;
-
-    if (isSortChanged) this.loadTasks(this.userId);
-  }
-
   loadTasks(userId: ITask['id']): void {
-    const tasks = this.tasksService.getTasksByUserId(userId);
-    this.tasks = this.sortTasks(tasks, this.sort);
-  }
-
-  sortTasks(tasks: ITask[], sort: SortDirectionType): ITask[] {
-    return sort === 'asc' ? tasks.reverse() : tasks;
+    this.tasks = this.tasksService.getTasksByUserId(userId);
   }
 
   handleTaskCompletion(taskId: ITask['id']): void {
