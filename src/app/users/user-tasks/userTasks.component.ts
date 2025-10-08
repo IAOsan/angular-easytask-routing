@@ -14,15 +14,14 @@ import { SortDirectionType } from '../../shared/shared.types';
 export class UserTasksComponent implements OnChanges {
   @Input() userId: UserType['id'] = '';
   @Input() sort: SortDirectionType = 'asc';
-  tasks: ITask[] = [];
+  @Input() tasks: ITask[] = [];
 
   constructor(private tasksService: TasksService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    const isUserChanged = changes['userId']?.currentValue && this.userId;
     const isSortChanged = changes['sort']?.currentValue && this.sort;
 
-    if (isUserChanged || isSortChanged) this.loadTasks(this.userId);
+    if (isSortChanged) this.loadTasks(this.userId);
   }
 
   loadTasks(userId: ITask['id']): void {
