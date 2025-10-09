@@ -1,10 +1,10 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TasksService } from '../../tasks/tasks.service';
-import { UserType } from '../user/user.model';
+import { Component, Input } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
+import { SortDirectionType } from '../../shared/shared.types';
 import { ITask } from '../../tasks/task.model';
 import { TaskComponent } from '../../tasks/task/task.component';
-import { SortDirectionType } from '../../shared/shared.types';
+import { TasksService } from '../../tasks/tasks.service';
+import { UserType } from '../user/user.model';
 
 @Component({
   selector: 'app-user/tasks',
@@ -16,14 +16,23 @@ export class UserTasksComponent {
   @Input() sort: SortDirectionType = 'asc';
   @Input() tasks: ITask[] = [];
 
-  constructor(private tasksService: TasksService) {}
+  constructor(private tasksService: TasksService, private router: Router) {}
 
-  loadTasks(userId: ITask['id']): void {
-    this.tasks = this.tasksService.getTasksByUserId(userId);
+  completeTask(taskId: ITask['id']): void {
+    this.tasksService.completeTaskById(taskId);
+  }
+
+  refreshTasksView(): void {
+    const path = ['users', this.userId, 'tasks'];
+    const navigationExtras: NavigationExtras = {
+      onSameUrlNavigation: 'reload',
+    };
+
+    this.router.navigate(path, navigationExtras);
   }
 
   handleTaskCompletion(taskId: ITask['id']): void {
-    this.tasksService.completeTaskById(taskId);
-    this.loadTasks(this.userId);
+    this.completeTask(taskId);
+    this.refreshTasksView();
   }
 }
