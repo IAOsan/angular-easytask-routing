@@ -13,18 +13,20 @@ import { NotFoundComponent } from './notFound/notFound.component';
 import { NewTaskComponent } from './tasks/newTask/newTask.component';
 import { NoTaskComponent } from './tasks/noTask/noTask.component';
 import { TasksComponent } from './tasks/tasks.component';
-import { userNameResolveFn } from './tasks/userName.resolver';
+import { titleResolveFn, userNameResolveFn } from './tasks/userName.resolver';
 import { UserTasksComponent } from './users/user-tasks/userTasks.component';
 import { userTasksResolveFn } from './users/user-tasks/userTasks.resolver';
+import { SITE_NAME } from './app.constants';
 
 const routes: Routes = [
-  { path: '', component: NoTaskComponent },
+  { path: '', component: NoTaskComponent, title: SITE_NAME },
   {
     path: 'users/:userId',
     component: TasksComponent,
     resolve: {
       userName: userNameResolveFn,
     },
+    title: titleResolveFn,
     children: [
       {
         path: 'tasks',
@@ -44,6 +46,7 @@ const routes: Routes = [
   {
     path: '**',
     component: NotFoundComponent,
+    title: `${SITE_NAME} | Not Found`
   },
 ];
 
