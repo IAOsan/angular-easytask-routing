@@ -14,6 +14,7 @@ import { NoTaskComponent } from './tasks/noTask/noTask.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { userNameResolveFn } from './tasks/userName.resolver';
 import { UserTasksComponent } from './users/user-tasks/userTasks.component';
+import { userTasksResolveFn } from './users/user-tasks/userTasks.resolver';
 
 const routes: Routes = [
   { path: '', component: NoTaskComponent },
@@ -27,6 +28,10 @@ const routes: Routes = [
       {
         path: 'tasks',
         component: UserTasksComponent,
+        resolve: {
+          tasks: userTasksResolveFn,
+        },
+        runGuardsAndResolvers: 'always',
       },
       { path: 'new-task', component: NewTaskComponent },
     ],

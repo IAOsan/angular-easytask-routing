@@ -1,41 +1,38 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TasksService } from '../../tasks/tasks.service';
-import { UserType } from '../user/user.model';
+import { Component, Input } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
+import { SortDirectionType } from '../../shared/shared.types';
 import { ITask } from '../../tasks/task.model';
 import { TaskComponent } from '../../tasks/task/task.component';
-import { SortDirectionType } from '../../shared/shared.types';
+import { TasksService } from '../../tasks/tasks.service';
+import { UserType } from '../user/user.model';
 
 @Component({
   selector: 'app-user/tasks',
   templateUrl: './userTasks.component.html',
   imports: [TaskComponent],
 })
-export class UserTasksComponent implements OnChanges {
+export class UserTasksComponent {
   @Input() userId: UserType['id'] = '';
   @Input() sort: SortDirectionType = 'asc';
-  tasks: ITask[] = [];
+  @Input() tasks: ITask[] = [];
 
-  constructor(private tasksService: TasksService) {}
+  constructor(private tasksService: TasksService, private router: Router) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    const isUserChanged = changes['userId']?.currentValue && this.userId;
-    const isSortChanged = changes['sort']?.currentValue && this.sort;
-
-    if (isUserChanged || isSortChanged) this.loadTasks(this.userId);
+  completeTask(taskId: ITask['id']): void {
+    this.tasksService.completeTaskById(taskId);
   }
 
-  loadTasks(userId: ITask['id']): void {
-    const tasks = this.tasksService.getTasksByUserId(userId);
-    this.tasks = this.sortTasks(tasks, this.sort);
-  }
+  refreshTasksView(): void {
+    const path = ['users', this.userId, 'tasks'];
+    const navigationExtras: NavigationExtras = {
+      onSameUrlNavigation: 'reload',
+    };
 
-  sortTasks(tasks: ITask[], sort: SortDirectionType): ITask[] {
-    return sort === 'asc' ? tasks.reverse() : tasks;
+    this.router.navigate(path, navigationExtras);
   }
 
   handleTaskCompletion(taskId: ITask['id']): void {
-    this.tasksService.completeTaskById(taskId);
-    this.loadTasks(this.userId);
+    this.completeTask(taskId);
+    this.refreshTasksView();
   }
 }
