@@ -9,6 +9,7 @@ import {
   withComponentInputBinding,
   withRouterConfig,
 } from '@angular/router';
+import { NotFoundComponent } from './notFound/notFound.component';
 import { NewTaskComponent } from './tasks/newTask/newTask.component';
 import { NoTaskComponent } from './tasks/noTask/noTask.component';
 import { TasksComponent } from './tasks/tasks.component';
@@ -34,7 +35,15 @@ const routes: Routes = [
         runGuardsAndResolvers: 'always',
       },
       { path: 'new-task', component: NewTaskComponent },
+      {
+        path: '**',
+        redirectTo: 'tasks',
+      },
     ],
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
 
